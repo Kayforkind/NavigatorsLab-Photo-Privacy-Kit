@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;wasm-unsafe-eval&#39; blob:; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data: blob:; media-src &#39;self&#39; blob:; font-src &#39;self&#39; data:; connect-src &#39;self&#39; blob: data:; worker-src &#39;self&#39; blob:; child-src &#39;self&#39; blob:; form-action &#39;none&#39;; base-uri &#39;none&#39;">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Privacy Kit — NavigatorsLab Tools</title>
+  <meta name="description" content="Strip GPS, camera and timestamp metadata from photos in your browser. Nothing is uploaded." />
+  <meta name="theme-color" content="#0b0f17" />
+  <meta property="og:title" content="Photo Privacy Kit — NavigatorsLab Tools" />
+  <meta property="og:description" content="Strip GPS, camera and timestamp metadata from photos in your browser. Nothing is uploaded." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://navigatorslab.com/tools/og-exif.png" />
+  <meta property="og:url" content="https://navigatorslab.com/tools/exif" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Photo Privacy Kit — NavigatorsLab Tools" />
+  <meta name="twitter:description" content="Strip GPS, camera and timestamp metadata from photos in your browser. Nothing is uploaded." />
+  <meta name="twitter:image" content="https://navigatorslab.com/tools/og-exif.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  <script type="module" crossorigin src="./assets/exif-QfnPFTdq.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="./assets/preload-helper-Dp1pzeXC.js">
+  <link rel="modulepreload" crossorigin href="./assets/dom-CdRtKgMN.js">
+  <link rel="modulepreload" crossorigin href="./assets/exif-DIh7Cy6F.js">
+  <link rel="modulepreload" crossorigin href="./assets/agent-BXrVPJYt.js">
+  <link rel="stylesheet" crossorigin href="./assets/styles-DxO-VUmL.css"></head>
+<body>
+  <header class="nl-top">
+    <a class="brand" href="./index.html">🧭 NavigatorsLab <b>Tools</b></a>
+    <span class="spacer"></span>
+    <a class="plain" href="./index.html">← All tools</a>
+  </header>
+
+  <main class="wrap narrow">
+    <h1>🛡️ Photo Privacy Kit</h1>
+    <p class="sub">
+      Vacation pics carry <b>GPS coordinates of your home</b>, your camera model, and exact timestamps.
+      Drop photos here, see exactly what leaks, then download clean copies.
+      <b>Files are processed in this tab and never uploaded.</b>
+    </p>
+
+    <div class="drop" id="dz">
+      <span class="big">📷</span>
+      <b>Drop photos here</b>, paste a screenshot (Ctrl+V), or click to pick — any count
+    </div>
+
+    <div class="row">
+      <button class="primary" id="strip" disabled>🧹 Strip metadata &amp; download all</button>
+      <button id="rezip" disabled>⬇️ Download as .zip</button>
+      <button id="hashbtn" disabled>🔬 Show SHA-256 fingerprints</button>
+      <span class="grow" style="flex:1"></span>
+      <span class="pill" id="count">0 files</span>
+    </div>
+    <div class="stat" id="stat" hidden></div>
+
+    <div id="list"></div>
+  </main>
+
+  <footer class="nl-foot">
+    <span class="lock">🔒 runs 100% in your browser — no uploads, no storage, no logs</span>
+    <span>·</span><a href="./index.html">all tools</a>
+    <span>·</span><a href="https://github.com/Kayforkind/NavigatorsLab-Tools">source (MIT)</a>
+  </footer>
+
+</body>
+</html>

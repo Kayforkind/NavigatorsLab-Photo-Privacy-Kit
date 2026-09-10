@@ -1,0 +1,1 @@
+exif exif gps photo-privacy metadata navigatorslab-tools browser client-side offline-first privacy-tools no-upload mit-license javascript
