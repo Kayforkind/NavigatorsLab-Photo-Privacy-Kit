@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Privacy Kit — free, in your browser — NavigatorsLab</title>
+<meta name="description" content="Strip GPS, camera model and timestamps before posting Free, open-source (MIT), 100% on-device. No uploads, no accounts. Runs right here and on navigatorslab.com.">
+<meta property="og:title" content="Photo Privacy Kit — NavigatorsLab Tools">
+<meta property="og:description" content="Strip GPS, camera model and timestamps before posting">
+<meta property="og:image" content="./og.png">
+<meta name="theme-color" content="#0b0f17">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>">
+<style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(900px 500px at 15% -10%, rgba(56,189,248,.16), transparent 60%),
+                        radial-gradient(800px 500px at 110% 10%, rgba(167,139,250,.14), transparent 55%), #0b0f17;
+      color: #e7ecf5; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55; }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 20px 64px; }
+    .tile { width: 76px; height: 76px; display: grid; place-items: center; font-size: 38px;
+      border-radius: 20px; background: linear-gradient(135deg, rgba(56,189,248,.25), rgba(167,139,250,.25));
+      border: 1px solid rgba(148,163,184,.25); }
+    h1 { margin: 18px 0 6px; font-size: 34px; letter-spacing: -0.5px; }
+    .tag { color: #9fb0c8; font-size: 18px; margin: 0 0 18px; }
+    .badges span { display: inline-block; margin: 0 8px 8px 0; padding: 4px 12px; border-radius: 999px;
+      font-size: 13px; color: #cbd5e1; border: 1px solid rgba(148,163,184,.3); background: rgba(148,163,184,.08); }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 8px; }
+    .btn { display: inline-block; padding: 12px 22px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+    .primary { color: #06121f; background: linear-gradient(135deg, #67e8f9, #a78bfa); }
+    .ghost { color: #e7ecf5; border: 1px solid rgba(148,163,184,.4); }
+    .shot { width: 100%; border-radius: 14px; border: 1px solid rgba(148,163,184,.25); margin: 26px 0 6px; }
+    .cap { color: #64748b; font-size: 13px; text-align: center; margin: 0 0 30px; }
+    h2 { font-size: 22px; margin: 40px 0 12px; }
+    .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+    .feats li { padding: 14px 16px; border-radius: 12px; background: rgba(148,163,184,.07);
+      border: 1px solid rgba(148,163,184,.18); font-size: 15px; }
+    ol.steps { padding-left: 20px; color: #cdd8e6; }
+    ol.steps li { margin: 10px 0; }
+    ol.steps b { color: #e7ecf5; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+    .grid a { display: block; padding: 12px 14px; border-radius: 12px; text-decoration: none;
+      color: #cdd8e6; background: rgba(148,163,184,.06); border: 1px solid rgba(148,163,184,.16); font-size: 14px; }
+    .grid a:hover { border-color: rgba(103,232,249,.5); color: #e7ecf5; }
+    .grid a b { display: block; color: #e7ecf5; font-size: 15px; margin-bottom: 2px; }
+    .note { border-left: 3px solid #67e8f9; padding: 10px 16px; background: rgba(56,189,248,.07);
+      border-radius: 0 10px 10px 0; color: #cdd8e6; }
+    footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid rgba(148,163,184,.18);
+      color: #64748b; font-size: 14px; }
+    footer a { color: #94a3b8; }
+    a { color: #7dd3fc; }
+    .io-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 18px 0 12px; }
+    .io-card { padding: 14px 16px; border-radius: 12px; background: rgba(9,13,22,.9); border: 1px solid rgba(148,163,184,.22); }
+    .io-card small { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; color: #2dd4bf; }
+    .io-card b { display: block; color: #f8fafc; font-size: 15px; margin-bottom: 4px; }
+    .io-card span { color: #94a3b8; font-size: 13px; }
+    .io-proof { background: #060911; border: 1px solid rgba(45,212,191,.35); border-radius: 10px; padding: 11px 14px; font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; color: #2dd4bf; overflow-x: auto; margin-bottom: 24px; }
+    .vid-wrap { width: 100%; aspect-ratio: 16 / 9; background: #05070d; border-radius: 14px; overflow: hidden; border: 1px solid rgba(94,234,212,.35); margin: 22px 0 8px; }
+    .vid-wrap video { width: 100%; height: 100%; object-fit: contain; display: block; background: #05070d; }
+</style>
+</head>
+<body>
+<main>
+  <div class="tile" aria-hidden="true">🛡</div>
+  <h1>Photo Privacy Kit</h1>
+  <p class="tag">Strip GPS, camera model and timestamps before posting</p>
+  <div class="badges"><span>🆓 free &amp; open source (MIT)</span><span>🔒 nothing is uploaded</span><span>📶 works offline</span><span>📱 mobile friendly</span></div>
+  <div class="cta">
+    <a class="btn primary" href="./demo.html">Run it right here &rarr;</a>
+    <a class="btn ghost" href="https://navigatorslab.com/Photo-Privacy-Kit">navigatorslab.com/Photo-Privacy-Kit</a>
+    <a class="btn ghost" href="https://navigatorslab.com/tools/videos/notebooklm-overview.mp4">🎬 Watch Full Suite Usage Guide</a>
+  </div>
+
+  <h2>🔊 Narrated Step-by-Step Usage Tutorial Video (43s)</h2>
+  <div class="vid-wrap">
+    <video controls playsinline preload="metadata" poster="./poster.jpg" data-aspect="horizontal">
+      <source src="./demo.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <h2>📖 Detailed Step-by-Step User Guide</h2>
+  <div class="io-grid">
+    <div class="io-card"><small>Step 1: Load Your Photo (Drag & Drop or Ctrl+V) · [Dropzone (#dz) or Clipboard Paste]</small><b>Open Photo Privacy Kit and drag one or more JPEG, PNG, or WebP images onto the main dropzone (`#dz`), click to browse your device, or press `Ctrl+V` (`Cmd+V` on Mac) to paste directly from your clipboard.</b><span>✓ Result: The file loads immediately into browser memory with zero network activity.</span></div>
+    <div class="io-card"><small>Step 2: Inspect the Live Metadata & GPS Leak Report · [Leak Report Table (#list)]</small><b>Read the per-file inspection row under `#list`. Red warning badges highlight high-risk leaks such as exact GPS latitude/longitude coordinates, device make/model, capture timestamps, and embedded EXIF thumbnails.</b><span>✓ Result: Every detected EXIF, XMP, IPTC, and comment segment is listed byte-by-byte.</span></div>
+    <div class="io-card"><small>Step 3: Strip Metadata & Toggle SHA-256 Pixel Proof · [Strip Button (#strip) & SHA-256 Toggle]</small><b>Optionally toggle **Show SHA-256 fingerprints** to display the decoded RGBA pixel hash before and after cleaning. Click **Strip metadata & download all (`#strip`)** (or **Download as .zip** for batches).</b><span>✓ Result: The segment parser strips APP1/APP13/XMP/COM markers without re-encoding your pixels.</span></div>
+    <div class="io-card"><small>Step 4: Verify GPS CLEAR & Save Cleaned Image · [Verified Output Row (GPS CLEAR)]</small><b>Verify that the status badge turns green (**GPS CLEAR — 0 metadata segments**) and that the before/after decoded pixel SHA-256 hashes match 100%.</b><span>✓ Result: Cleaned `.clean.jpg` / `.png` / `.webp` saved locally with zero generation loss.</span></div>
+  </div>
+
+  <h2>🎛️ UI Controls &amp; Shortcuts Reference</h2>
+  <ul class="feats">
+      <li><code>Dropzone (`#dz`) / `Ctrl+V`</code> — Accepts single or batch `.jpg`, `.jpeg`, `.png`, and `.webp` files via drag-and-drop, file picker, or clipboard paste.</li>
+      <li><code>Strip metadata & download all (`#strip`)</code> — Removes EXIF, GPS, XMP, IPTC, and comment segments from every loaded file and downloads cleaned copies.</li>
+      <li><code>Download as .zip (`#zip`)</code> — Bundles all cleaned images into a single local `.zip` archive when processing multiple photos.</li>
+      <li><code>Show SHA-256 fingerprints (`#shaToggle`)</code> — Computes the SHA-256 digest of the decoded pixel buffer before and after stripping to prove zero pixel alteration.</li>
+  </ul>
+
+  <h2>💡 Pro Tips &amp; Real-World Workflows</h2>
+  <ul class="feats">
+      <li>Press `Ctrl+V` right after taking a system screenshot to strip OS color-profile and timestamp chunks before sharing on Slack, Discord, or GitHub issues.</li>
+      <li>Because Photo Privacy Kit strips container markers at the byte level without re-compressing JPEG blocks, your photo never suffers JPEG generation loss.</li>
+      <li>Drop a cleaned `.clean.jpg` file back into the dropzone at any time to confirm it reports `0 metadata segments`.</li>
+  </ul>
+
+  <h2>⚡ Concrete Example: Input → Engine → Output</h2>
+  <div class="io-grid">
+    <div class="io-card">
+      <small>1 · Raw Input</small>
+      <b>vacation-photo.jpg (3.4 MB)</b>
+      <span>Hidden EXIF: GPS 41.0082° N, 28.9784° E · iPhone 15 Pro · 2026:08:14 14:22:09 · Embedded 160x120 thumbnail</span>
+    </div>
+    <div class="io-card">
+      <small>2 · On-Device Engine</small>
+      <b>Byte-level JPEG APP1/APP13/COM parser strips 64 KB of metadata segments without decoding or re-encoding pixels</b>
+      <span>Runs locally under strict Content-Security-Policy with zero network uploads.</span>
+    </div>
+    <div class="io-card">
+      <small>3 · Verified Output</small>
+      <b>vacation-photo.clean.jpg (3.34 MB)</b>
+      <span>0 EXIF/GPS/XMP/IPTC segments · Pixel SHA-256: 9f84c2...e10b (100% byte-identical image data)</span>
+    </div>
+  </div>
+  <div class="io-proof">GPS: REMOVED | Camera: REMOVED | Thumbnail: REMOVED | Pixels SHA-256: IDENTICAL [OK]</div>
+
+  <img class="shot" src="./shot.png" alt="Photo Privacy Kit in action">
+  <p class="cap">Photo Privacy Kit mid-task — this demo runs entirely on this page's own GitHub Pages site.</p>
+
+  <h2>What it does</h2>
+  <ul class="feats">
+      <li>See exactly what leaks â€” GPS coordinates, camera & lens, timestamps, embedded thumbnails â€” before you post</li>
+      <li>One-click clean copy: Exif, XMP, IPTC and comments removed, pixels untouched</li>
+      <li>SHA-256 fingerprints + pixel comparison prove the clean file is the same picture, minus the data</li>
+      <li>Paste screenshots directly (Ctrl/Cmd+V) or drop files; batch friendly</li>
+  </ul>
+
+  <h2>How it works</h2>
+  <ol class="steps">
+      <li><b>Step 1.</b> Drop a photo (or paste a screenshot with Ctrl/Cmd+V)</li>
+      <li><b>Step 2.</b> Read the leak report: GPS, camera, timestamps, thumbnails</li>
+      <li><b>Step 3.</b> Hit strip &amp; download â€” the SHA-256 proves pixels are unchanged</li>
+  </ol>
+
+  <div class="note"><b>Private by design.</b> Files are processed on <em>your</em> device and never
+  sent to any server. No accounts, no tracking, no cookies, nothing retained. Prefer the hub?
+  The same tool lives at <a href="https://navigatorslab.com/tools/exif.html">https://navigatorslab.com/tools/exif.html</a>.</div>
+
+  <h2>The suite: 24 projects, one zero-upload promise</h2>
+  <div class="grid">
+      <a href="https://navigatorslab.com/tools/breachcheck.html"><b>🔐 Password Breach Checker</b>Has this password been breached? — it never leaves your tab</a>
+      <a href="https://navigatorslab.com/tools/metadata.html"><b>🔍 Metadata & Hidden-Data Checker</b>See what's really inside a file — then strip it</a>
+      <a href="https://navigatorslab.com/tools/shrink.html"><b>🗜 Image Shrinker</b>Hit “max 2 MB” portal limits without TinyPNG</a>
+      <a href="https://navigatorslab.com/tools/scan.html"><b>📄 Scan & Screenshot Cleaner</b>Phone photos of documents → clean, straight PDFs</a>
+      <a href="https://navigatorslab.com/tools/sign.html"><b>✍ Local E-Sign Pad</b>Sign this lease tonight — not DocuSign</a>
+      <a href="https://navigatorslab.com/tools/receipts.html"><b>🧾 Receipts → One PDF</b>Shoebox of receipt photos → one date-sorted PDF</a>
+      <a href="https://navigatorslab.com/tools/ocr.html"><b>🔢 Receipt OCR → CSV</b>Read totals off receipt photos, export for expenses</a>
+      <a href="https://navigatorslab.com/tools/qr.html"><b>🔳 QR Studio</b>Generate QR codes and decode QR images — no site sees them</a>
+      <a href="https://navigatorslab.com/tools/audio.html"><b>🎧 Audio Trimmer</b>Cut voice notes and clips on a waveform</a>
+      <a href="https://navigatorslab.com/tools/invoice.html"><b>🧮 Invoice / Quote Generator</b>One-person shops: hours in, clean PDF out</a>
+      <a href="https://navigatorslab.com/tools/rename.html"><b>🗂 Batch Rename & Sort</b>IMG_5847.jpg → 2026-09-05-receipt-home-depot.jpg</a>
+      <a href="https://navigatorslab.com/tools/printprep.html"><b>🖨 Print-Shop Prep</b>Exact sizes, bleed, DPI checks, print-ready PDF</a>
+      <a href="https://navigatorslab.com/tools/pdfpages.html"><b>📑 PDF Pages</b>Reorder, rotate, delete and extract PDF pages</a>
+      <a href="https://navigatorslab.com/tools/textdiff.html"><b>🔬 Text Diff</b>Compare two texts with word-level highlights</a>
+      <a href="https://navigatorslab.com/reimagine/"><b>🎨 Reimagine</b>Redesign any HTML page from its own content</a>
+      <a href="https://navigatorslab.com/tools/textstats.html"><b>📊 Text Stats</b>Words, reading time, readability, keyword density</a>
+      <a href="https://navigatorslab.com/pdf-studio/"><b>📜 PDF Studio</b>Edit the text inside your PDF — private, free, open source</a>
+      <a href="https://github.com/Kayforkind/design-health-action"><b>🩺 Design Health</b>18 deterministic design-quality checks for HTML — no LLM, no API key</a>
+      <a href="https://github.com/Kayforkind/skill-slice"><b>🔪 Skill Slice</b>Copy one Read-verified skill folder — a slice, not the pie</a>
+      <a href="https://github.com/Kayforkind/liecatchers"><b>🕵 liecatchers</b>Your agent said Done. Prove it — ten sensors, one RECEIPT.json</a>
+      <a href="https://github.com/Kayforkind/book-guide-mcp"><b>📚 Book Guide MCP</b>Ship improvements with your books — agents cite, run playbooks, learn</a>
+      <a href="https://github.com/Kayforkind/data-insights"><b>📡 Data Insights</b>Founder intelligence — daily & weekly tech signal briefs</a>
+      <a href="https://github.com/Kayforkind/iron-axe-legacy"><b>🪓 Iron Axe: Legacy</b>An original side-scrolling beat 'em up — Godot 4</a>
+  </div>
+
+  <footer>
+    <b>NavigatorsLab Tools</b> — free &amp; open source (MIT).
+    <a href="https://navigatorslab.com/tools/">Hub</a> · <a href="https://github.com/Kayforkind/NavigatorsLab-Tools">Source</a> ·
+    <a href="https://navigatorslab.com/tools/agents.html">Agent mode</a> · <a href="https://navigatorslab.com/tools/llms.txt">llms.txt</a> ·
+    MCP: <code>POST https://navigatorslab.com/tools/mcp</code>
+  </footer>
+</main>
+</body>
+</html>
